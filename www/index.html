@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+	<!-- Change this if you want to allow scaling -->
+    <meta name="viewport" content="width=default-width; user-scalable=no" />
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>phonegaptest</title>
+	
+	<!-- iPad/iPhone specific css below, add after your main css >
+	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+	-->
+	<!-- If you application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+	<script type="text/javascript" charset="utf-8" src="phonegap.0.9.4.min.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>	
+
+<script type="text/javascript">
+ 
+$( function() {
+ 
+$('#searchButton').click(function() {
+   $.getJSON('http://api.alternativeto.net/software/'+$('#searchBox').val()+'/?count=15', 
+  function(data) {
+      var items=data.Items;
+      var list = $('#list');
+      list.html("");
+  $.each(items, function(key, val) {
+    list.append(
+        $(document.createElement('li')).html(val.Name)
+    );
+  });
+  list.listview("destroy").listview()
+ 
+ });
+ 
+});
+ 
+      document.addEventListener("deviceready", onDeviceReady, false);
+ 
+} );
+ 
+function reachableCallback(reachability) {
+    // There is no consistency on the format of reachability
+    var networkState = reachability.code || reachability;
+ 
+    var states = {};
+    states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
+    states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
+    states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
+ 
+    alert('Connection type: ' + states[networkState]);
+}
+ 
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+navigator.network.isReachable('phonegap.com', reachableCallback);
+    }
+ 
+</script>  
+
+	
+  </head>
+  <body onload="onBodyLoad()">
+     
+	 <div data-role="page" id="home"> 
+ 
+  <div data-role="header"> 
+    <h1>AlternativeTo Home</h1> 
+  </div> 
+ 
+  <div data-role="content">
+    <p>Find Alternatives To Your favourite Softwares </p>
+    <p><a href="#search" data-role="button">Search Alternatives</a></p>    
+    <p><a href="#recent" data-role="button">Recent Alternatives</a></p>
+  </div> 
+ 
+</div> 
+ 
+<div data-role="page" id="search"> 
+  <div data-role="header" data-position="fixed"> 
+    <h1>Search Alternatives</h1> 
+    <div class="class= ui-body ui-body-b"> 
+         <input type="text" name="search" id="searchBox" value="" data-theme="a" /> 
+         <button type="submit" data-theme="a" id="searchButton">Search</button>     
+    </div>  
+  </div> 
+ 
+  <div data-role="content"> 
+ 
+     <ul data-role="listview" id="list"> 
+    </ul> 
+  </div> 
+ 
+</div>
+ 
+<div data-role="page" id="recent"> 
+ 
+  <div data-role="header"> 
+    <h1> Recent Alternatives</h1> 
+  </div> 
+ 
+  <div data-role="content"> 
+    <p>This app rocks!</p> 
+ 
+  </div> 
+</div> 
+
+  	
+  </body>
+</html>
