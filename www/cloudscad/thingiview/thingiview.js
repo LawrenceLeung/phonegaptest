@@ -74,13 +74,13 @@ Thingiview = function(containerId) {
     scene.addLight(ambientLight);
     
     directionalLight = new THREE.DirectionalLight(0xffffff, 0.75);
-    directionalLight.position.x = 1;
-    directionalLight.position.y = 1;
-    directionalLight.position.z = 2;
+    directionalLight.position.x = 5;
+    directionalLight.position.y = 5;
+    directionalLight.position.z = 10;
     directionalLight.position.normalize();
     scene.addLight(directionalLight);
     
-    pointLight = new THREE.PointLight(0xffffff, 0.3);
+    pointLight = new THREE.PointLight(0xffffff, 0.5);
     pointLight.position.x = 0;
     pointLight.position.y = -25;
     pointLight.position.z = 10;
@@ -393,7 +393,7 @@ Thingiview = function(containerId) {
 
   this.setRotation = function(rotate) {
     rotation = rotate;
-    
+	  log("set rotation " + rotate);
     if (rotate) {
       rotateTimer = setInterval(rotateLoop, 1000/60);
     } else {
@@ -595,7 +595,6 @@ Thingiview = function(containerId) {
     geometry = new STLGeometry(array);
     loadObjectGeometry();
     scope.setRotation(false);
-    scope.setRotation(true);
     scope.centerCamera();
     log("finished loading " + geometry.faces.length + " faces.");
   }
@@ -615,7 +614,6 @@ Thingiview = function(containerId) {
         progressBar.style.display = 'none';
 
         scope.setRotation(false);
-        scope.setRotation(true);
         log("finished loading " + geometry.faces.length + " faces.");
         scope.centerCamera();
       } else if (event.data.status == "progress") {

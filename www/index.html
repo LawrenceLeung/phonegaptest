@@ -54,26 +54,33 @@ function reachableCallback(reachability) {
       // thingiview.setShowPlane(true);
       
       thingiview.loadSTL("cube.stl");
-	  thingiview.setObjectColor("#aa0000"); //red
+	  thingiview.setObjectColor("#aa1313"); //red
 	  thingiview.setBackgroundColor('#606060');// gray
+	  
 	  
 	  console.log("thingiview rendered");
     }
+	
+	function touchMode(evt){
+	console.log("touch");
+	event.preventDefault();
+	}
 	
 </script>  
 
 	
   </head>
+  
   <body onload="onBodyLoad()" style="width:100%;height:100%;padding:0px">
   
  
-<div data-role="page" id="home" style='width:100%:height:100%;padding:0px;position:relative;'> 
+<div data-role="page" id="home" style='width:100%:height:100%;padding:0px;position:relative;' ontouchmove="touchMove(event);"> 
  
  <!-- <div data-role="header"> 
     <h1> Stuff</h1> 
   </div> 
 --> 
-  <div data-role="content" style="width:320px;height:400px" id='viewer'> 
+  <div data-role="content" style="width:320px;height:400px" id='viewer' ontouchmove="touchMove(event);"> 
     
   </div> 
  
