@@ -2,7 +2,7 @@
 <html>
   <head>
 	<!-- Change this if you want to allow scaling -->
-    <meta name="viewport" content="width=default-width; user-scalable=no" />
+    <meta name="viewport" content="width=device-width; user-scalable=no" />
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
@@ -27,11 +27,7 @@
 <script type="text/javascript">
  
 $( function() {
- 
- 
       document.addEventListener("deviceready", onDeviceReady, false);
-	  
- 
 } );
  
 function reachableCallback(reachability) {
@@ -58,25 +54,27 @@ function reachableCallback(reachability) {
       // thingiview.setShowPlane(true);
       
       thingiview.loadSTL("cube.stl");
+	  thingiview.setObjectColor("#aa0000"); //red
+	  thingiview.setBackgroundColor('#606060');// gray
+	  
+	  console.log("thingiview rendered");
     }
 	
-	
- 
 </script>  
 
 	
   </head>
-  <body onload="onBodyLoad()">
+  <body onload="onBodyLoad()" style="width:100%;height:100%;padding:0px">
   
  
-<div data-role="page" id="home"> 
+<div data-role="page" id="home" style='width:100%:height:100%;padding:0px;position:relative;'> 
  
-  <div data-role="header"> 
+ <!-- <div data-role="header"> 
     <h1> Stuff</h1> 
   </div> 
- 
-  <div data-role="content"> 
-    <div id='viewer' style="width:300px;height:300px">This app rocks!</div> 
+--> 
+  <div data-role="content" style="width:320px;height:400px" id='viewer'> 
+    
   </div> 
  
 </div> 
