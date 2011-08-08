@@ -124,15 +124,20 @@ Thingiview = function(containerId) {
 
     testCanvas = document.createElement('canvas');
     try {
-      if (testCanvas.getContext('experimental-webgl')) {
+		// force webgl
+      if (true || testCanvas.getContext('experimental-webgl')) {
         // showPlane = false;
         isWebGl = true;
+		  log("is web gl");
         renderer = new THREE.WebGLRenderer();
         // renderer = new THREE.CanvasRenderer();
       } else {
+		  console.log("canvasrenderer");
         renderer = new THREE.CanvasRenderer();
       }
     } catch(e) {
+		
+		console.log("canvasrenderer");
       renderer = new THREE.CanvasRenderer();
       // log("failed webgl detection");
     }
